@@ -7,14 +7,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --background: #fdfdfd;
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --text: #111827;
-      --section: #f9fafb;
-      --white: #fff;
-      --highlight: linear-gradient(45deg, #6366f1, #4f46e5);
-      --border-radius: 12px;
+      --primary: #7b61ff;
+      --secondary: #ec4899;
+      --white: #ffffff;
+      --dark: #1f1f2e;
     }
 
     * {
@@ -25,201 +21,186 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--background);
-      color: var(--text);
-      line-height: 1.6;
+      background: linear-gradient(120deg, #f0e7ff, #dcd6ff);
+      color: var(--dark);
+      overflow-x: hidden;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
+      padding: 25px 60px;
       position: relative;
-      background: var(--white);
-      backdrop-filter: blur(8px);
-      border-radius: var(--border-radius);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      z-index: 5;
     }
 
     header img {
-      height: 40px;
+      height: 50px;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+    }
+
+    .menu-toggle span {
+      width: 26px;
+      height: 3px;
+      background: var(--dark);
+      border-radius: 3px;
     }
 
     nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: 250px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
       display: flex;
+      flex-direction: column;
+      padding: 80px 30px;
       gap: 20px;
+      transition: 0.4s ease-in-out;
+      box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+      z-index: 4;
+    }
+
+    nav.active {
+      right: 0;
     }
 
     nav a {
       text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
-      transition: 0.3s ease;
+      color: var(--dark);
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: 0.3s;
     }
 
     nav a:hover {
       color: var(--primary);
     }
 
-    .burger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      height: 24px;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    .burger span {
-      height: 3px;
-      width: 24px;
-      background: var(--text);
-      margin: 3px 0;
-      transition: 0.3s ease;
-    }
-
-    .burger.active span:nth-child(1) {
-      transform: rotate(45deg) translateY(6px);
-    }
-
-    .burger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .burger.active span:nth-child(3) {
-      transform: rotate(-45deg) translateY(-6px);
-    }
-
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
+    .blob {
       position: absolute;
-      top: 70px;
-      right: 40px;
-      background: var(--white);
-      border: 1px solid #eee;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-      padding: 20px;
-      border-radius: var(--border-radius);
-      z-index: 1000;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.4;
+      z-index: 0;
     }
 
-    .mobile-menu.show {
-      display: flex;
-      opacity: 1;
-      transform: translateY(0);
+    .blob1 {
+      width: 400px;
+      height: 400px;
+      background: var(--primary);
+      top: -100px;
+      left: -100px;
     }
 
-    .mobile-menu a {
-      text-decoration: none;
-      color: var(--text);
-      margin: 10px 0;
-      font-weight: 500;
+    .blob2 {
+      width: 300px;
+      height: 300px;
+      background: var(--secondary);
+      bottom: -100px;
+      right: -80px;
     }
 
     .hero {
       text-align: center;
       padding: 100px 20px 80px;
-      background: var(--background);
+      position: relative;
+      z-index: 2;
     }
 
     .hero h1 {
       font-size: 3rem;
       font-weight: 800;
-      max-width: 700px;
-      margin: auto;
-      background: var(--highlight);
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
-      color: transparent;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
     }
 
     .hero p {
       font-size: 1.2rem;
       color: #555;
-      margin: 20px auto;
-      max-width: 500px;
+      margin-bottom: 35px;
     }
 
-    .hero .cta {
-      margin-top: 30px;
-      padding: 15px 30px;
-      background: var(--primary);
-      color: var(--white);
-      font-weight: 600;
+    .hero button {
+      background-color: var(--primary);
+      color: white;
+      padding: 14px 32px;
+      font-size: 1rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: 0.2s ease-in-out;
+      transition: 0.3s;
+      box-shadow: 0 10px 20px rgba(123, 97, 255, 0.25);
     }
 
-    .hero .cta:hover {
-      background: var(--primary-dark);
-      transform: scale(1.05);
-    }
-
-    .section {
-      padding: 60px 20px;
-      background: var(--section);
-      text-align: center;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-      border-radius: var(--border-radius);
-    }
-
-    .section h2 {
-      font-size: 2rem;
-      margin-bottom: 40px;
+    .hero button:hover {
+      background-color: #6a4ee6;
+      transform: translateY(-2px);
     }
 
     .cards {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 20px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 30px;
-      max-width: 1000px;
-      margin: auto;
+      position: relative;
+      z-index: 2;
     }
 
     .card {
-      background: #fff;
-      border-radius: var(--border-radius);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-      padding: 25px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: white;
+      border-radius: 20px;
+      padding: 30px 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      transition: 0.3s ease;
     }
 
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     }
 
     .card h3 {
       font-size: 1.3rem;
       margin-bottom: 10px;
+      color: var(--primary);
     }
 
     .card p {
       font-size: 0.95rem;
-      color: #666;
+      color: #555;
     }
 
     footer {
-      padding: 40px 20px;
       text-align: center;
-      font-size: 0.85rem;
-      color: #888;
-      background: var(--white);
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      color: #999;
+      background: transparent;
+      z-index: 2;
+      position: relative;
     }
 
-    @media(max-width: 768px) {
-      nav {
-        display: none;
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
       }
 
-      .burger {
-        display: flex;
+      header {
+        padding: 20px 30px;
       }
 
       .hero h1 {
@@ -234,72 +215,59 @@
 </head>
 <body>
 
+  <!-- Blobs -->
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+
+  <!-- Header -->
   <header>
     <img src="A_logo_for_&quot;CrazyBotDeploy&quot;_is_set_against_a_deep_.png" alt="CrazyBotDeploy Logo">
-    
-    <nav>
-      <a href="#">Accueil</a>
-      <a href="#">Tutoriels</a>
-      <a href="#">Bots</a>
-      <a href="#">Politique</a>
-      <a href="#">Contact</a>
-    </nav>
-
-    <div class="burger" id="burger" onclick="toggleMenu()">
+    <div class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('active')">
       <span></span>
       <span></span>
       <span></span>
-    </div>
-
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#">Accueil</a>
-      <a href="#">Tutoriels</a>
-      <a href="#">Bots</a>
-      <a href="#">Politique</a>
-      <a href="#">Contact</a>
     </div>
   </header>
 
+  <!-- Menu Burger -->
+  <nav>
+    <a href="#">Accueil</a>
+    <a href="#bots">Tutoriels</a>
+    <a href="#">Politique</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <!-- Hero -->
   <section class="hero">
-    <h1>Déploie ton bot préféré en quelques clics</h1>
-    <p>Choisis ta plateforme. Suis un tuto clair. Et rends ton bot vivant en ligne. Simple. Pro. Rapide.</p>
-    <button class="cta" onclick="window.location.href='bots.html'">Commencer</button>
+    <h1>Déploie ton bot favori</h1>
+    <p>Choisis ton bot préféré et suis un tutoriel clair pour le rendre actif !</p>
+    <button onclick="window.location.href='#bots'">Explorer les bots</button>
   </section>
 
-  <section class="section">
-    <h2>Choisissez votre bot</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>WhatsApp</h3>
-        <p>Crée et déploie ton bot Baileys, MD ou IA en 5 minutes chrono.</p>
-      </div>
-      <div class="card">
-        <h3>Telegram</h3>
-        <p>Apprends à configurer ton propre auto-bot Telegram avec style.</p>
-      </div>
-      <div class="card">
-        <h3>Discord</h3>
-        <p>Mod bots, music bots, slash commands. On te guide de A à Z.</p>
-      </div>
-      <div class="card">
-        <h3>Instagram</h3>
-        <p>Envoyer des DM automatiques ? Possible avec nos tutos simples.</p>
-      </div>
+  <!-- Cards -->
+  <section class="cards" id="bots">
+    <div class="card">
+      <h3>Bot WhatsApp</h3>
+      <p>Déploie un bot WhatsApp MultiDevice ou IA étape par étape.</p>
+    </div>
+    <div class="card">
+      <h3>Bot Telegram</h3>
+      <p>Crée ton propre auto-bot ou outil SMM via Telegram facilement.</p>
+    </div>
+    <div class="card">
+      <h3>Bot Discord</h3>
+      <p>Mod bot, musique, commandes slash : tout est expliqué !</p>
+    </div>
+    <div class="card">
+      <h3>Bot Instagram</h3>
+      <p>Automatiser les DM et interactions avec un bot IG ? C'est possible.</p>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    © 2025 CrazyBotDeploy. Tous droits réservés.
+    © 2025 CrazyBotDeploy — Tous droits réservés.
   </footer>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('mobileMenu');
-      const burger = document.getElementById('burger');
-      burger.classList.toggle('active');
-      menu.classList.toggle('show');
-    }
-  </script>
 
 </body>
 </html>
