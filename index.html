@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CrazyBotDeploy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000;
+      --white: #fff;
+      --gray: #f5f5f5;
+      --text: #111;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid #eee;
+      position: relative;
+    }
+
+    header img {
+      height: 40px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      height: 24px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .burger span {
+      height: 3px;
+      width: 24px;
+      background: var(--text);
+      margin: 3px 0;
+      transition: 0.3s ease;
+    }
+
+    .burger.active span:nth-child(1) {
+      transform: rotate(45deg) translateY(6px);
+    }
+
+    .burger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .burger.active span:nth-child(3) {
+      transform: rotate(-45deg) translateY(-6px);
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      right: 40px;
+      background: #fff;
+      border: 1px solid #eee;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+      border-radius: 12px;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu.show {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-menu a {
+      text-decoration: none;
+      color: var(--text);
+      margin: 10px 0;
+      font-weight: 500;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px 80px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #555;
+      margin: 20px auto;
+      max-width: 500px;
+    }
+
+    .hero .cta {
+      margin-top: 30px;
+      padding: 15px 30px;
+      background-color: var(--black);
+      color: var(--white);
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+    }
+
+    .hero .cta:hover {
+      background-color: #111;
+    }
+
+    .section {
+      padding: 60px 20px;
+      background: var(--gray);
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      padding: 25px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    @media(max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="A_logo_for_&quot;CrazyBotDeploy&quot;_is_set_against_a_deep_.png" alt="CrazyBotDeploy Logo">
+    
+    <nav>
+      <a href="#">Accueil</a>
+      <a href="#">Tutoriels</a>
+      <a href="#">Bots</a>
+      <a href="#">Politique</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <div class="burger" id="burger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">Accueil</a>
+      <a href="#">Tutoriels</a>
+      <a href="#">Bots</a>
+      <a href="#">Politique</a>
+      <a href="#">Contact</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Déploie ton bot préféré en quelques clics</h1>
+    <p>Choisis ta plateforme. Suis un tuto clair. Et rends ton bot vivant en ligne. Simple. Pro. Rapide.</p>
+    <button class="cta" onclick="window.location.href='bots.html'">Commencer</button>
+  </section>
+
+  <section class="section">
+    <h2>Choisissez votre bot</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>WhatsApp</h3>
+        <p>Crée et déploie ton bot Baileys, MD ou IA en 5 minutes chrono.</p>
+      </div>
+      <div class="card">
+        <h3>Telegram</h3>
+        <p>Apprends à configurer ton propre auto-bot Telegram avec style.</p>
+      </div>
+      <div class="card">
+        <h3>Discord</h3>
+        <p>Mod bots, music bots, slash commands. On te guide de A à Z.</p>
+      </div>
+      <div class="card">
+        <h3>Instagram</h3>
+        <p>Envoyer des DM automatiques ? Possible avec nos tutos simples.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 CrazyBotDeploy. Tous droits réservés.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const burger = document.getElementById('burger');
+      burger.classList.toggle('active');
+      menu.classList.toggle('show');
+    }
+  </script>
+
+</body>
+</html>
