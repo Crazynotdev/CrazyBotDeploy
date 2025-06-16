@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catégories de Bots - CrazyBotDeploy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --secondary: #10b981;
+      --text: #1f2937;
+      --bg: #f9fafb;
+      --card: #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    header img {
+      height: 40px;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin: 40px 0 10px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+    }
+
+    .grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #4b5563;
+      margin-bottom: 16px;
+    }
+
+    .card a {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      transition: 0.2s ease;
+      font-weight: 600;
+    }
+
+    .card a:hover {
+      background: #4f46e5;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      padding: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="A_digital_graphic_design_displays_the_logo_for_&quot;Cr.png" alt="CrazyBotDeploy Logo">
+  <div>
+    <a href="index.html" style="margin-right: 20px; text-decoration: none; color: var(--text); font-weight: bold;">Accueil</a>
+    <a href="#" style="text-decoration: none; color: var(--primary); font-weight: bold;">Tutoriels</a>
+  </div>
+</header>
+
+<h1 class="title">Choisis une catégorie de bot</h1>
+
+<section class="grid">
+
+  <div class="card">
+    <img src="https://i.imgur.com/8PjzIKj.png" alt="WhatsApp Bots">
+    <h3>Bots WhatsApp</h3>
+    <p>Déploie des bots WhatsApp multi-device modernes avec commandes et pairing rapide.</p>
+    <a href="bots-whatsapp.html">Voir les bots</a>
+  </div>
+
+  <div class="card">
+    <img src="https://i.imgur.com/sK1z43Q.png" alt="Telegram Bots">
+    <h3>Bots Telegram</h3>
+    <p>Des bots puissants pour automatiser Telegram avec Node.js ou Python.</p>
+    <a href="bots-telegram.html">Voir les bots</a>
+  </div>
+
+  <div class="card">
+    <img src="https://i.imgur.com/oXo8YRW.png" alt="Discord Bots">
+    <h3>Bots Discord</h3>
+    <p>Crée des bots Discord pour modération, musique, AI, et bien plus.</p>
+    <a href="bots-discord.html">Voir les bots</a>
+  </div>
+
+  <div class="card">
+    <img src="https://i.imgur.com/w4UnNDC.png" alt="Instagram Bots">
+    <h3>Bots Instagram</h3>
+    <p>Automatise les DMs, likes, followers, stories avec des bots IG avancés.</p>
+    <a href="bots-instagram.html">Voir les bots</a>
+  </div>
+
+</section>
+
+<footer>
+  © 2025 CrazyBotDeploy — Tous droits réservés.
+</footer>
+
+</body>
+</html>
