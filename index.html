@@ -241,7 +241,7 @@
   <section class="hero">
     <h1>Déploie ton bot favori</h1>
     <p>Choisis ton bot préféré et suis un tutoriel clair pour le rendre actif !</p>
-    <button onclick="window.location.href='#bots'">Explorer les bots</button>
+    <button onclick="redirectWithFade()">Explorer les bots</button>
   </section>
 
   <!-- Cards -->
@@ -263,6 +263,16 @@
       <p>Automatiser les DM et interactions avec un bot IG ? C'est possible.</p>
     </div>
   </section>
+
+  <script>
+  function redirectWithFade() {
+    document.body.classList.add('fade-out');
+    setTimeout(() => {
+      window.location.href = "bots.html";
+    }, 500);
+  }
+</script>
+
 
   <!-- Footer -->
   <footer>
